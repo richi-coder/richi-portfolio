@@ -9,7 +9,7 @@ let mobileMenu = document.querySelector("#mobilemenu");
 
 /* CountApi */ 
 // id: 94d68d37-4c42-4a3c-87c1-08b6ad7bbe4c
-fetch("https://api.countapi.xyz/get/richiportfolio/94d68d37-4c42-4a3c-87c1-08b6ad7bbe4c")
+fetch("https://api.countapi.xyz/hit/richiportfolio/94d68d37-4c42-4a3c-87c1-08b6ad7bbe4c")
             .then(response => {
                 if(!response.ok) {
                     throw new Error(`HTTP error: ${response.status}`)
