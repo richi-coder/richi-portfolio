@@ -17,7 +17,7 @@ fetch("https://api.countapi.xyz/hit/richiportfolio/94d68d37-4c42-4a3c-87c1-08b6a
                 return response.json();
             })
             .then(json => console.log(`Times visited: ${json.value}`))
-            .catch((err) => console.error(`${err.message}`); // Fetch ends here
+            .catch((err) => console.error(`${err.message}`)); // Fetch ends here
 
 icon.onclick= () => {
     icon.classList.toggle("fa-close");
