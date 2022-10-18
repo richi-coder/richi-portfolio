@@ -7,6 +7,18 @@ let logo = document.querySelector(".logo");
 let icon = document.querySelector("#mobilebutton");
 let mobileMenu = document.querySelector("#mobilemenu");
 
+/* CountApi */ 
+// id: 94d68d37-4c42-4a3c-87c1-08b6ad7bbe4c
+fetch("https://api.countapi.xyz/get/richiportfolio/94d68d37-4c42-4a3c-87c1-08b6ad7bbe4c")
+            .then(response => {
+                if(!response.ok) {
+                    throw new Error(`HTTP error: ${response.status}`)
+                }
+                return response.json();
+            })
+            .then(json => console.log(`Times visited: ${json.value}`))
+            .catch((err) => console.error(`${err.message}`); // Fetch ends here
+
 icon.onclick= () => {
     icon.classList.toggle("fa-close");
     icon.classList.toggle("fa-bars");
