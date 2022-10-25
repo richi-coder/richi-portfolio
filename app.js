@@ -1,3 +1,5 @@
+import {storage} from "./visit_storage.js";
+
 let btn = document.querySelector("#show-all");
 let project = document.querySelectorAll(".project");
 let projectImage = document.querySelectorAll(".project-image");
@@ -6,6 +8,24 @@ let shots = document.querySelector(".shots");
 let logo = document.querySelector(".logo");
 let icon = document.querySelector("#mobilebutton");
 let mobileMenu = document.querySelector("#mobilemenu");
+
+/* Last time visited */
+
+if(!sessionStorage.getItem("portfolio-tempo")) { 
+    sessionStorage.setItem("portfolio-tempo", 1);
+    tempo = Date.now();
+    url = "https://api.countapi.xyz/set/portfolio/tempo?value=" + tempo.toString();
+    fetch(url)
+            .then(response => {
+                if(!response.ok) {
+                    throw new Error(`HTTP error: ${response.status}`)
+                }
+                return response.json();
+            })
+            .then(json => {console.log(`Visit time: ${json.value}`);})
+            .catch((err) => console.error(`${err.message}`)); // Fetch ends here
+}
+
 
 /* CountApi */ 
 // id: 94d68d37-4c42-4a3c-87c1-08b6ad7bbe4c
@@ -16,8 +36,11 @@ fetch("https://api.countapi.xyz/hit/richiportfolio/94d68d37-4c42-4a3c-87c1-08b6a
                 }
                 return response.json();
             })
-            .then(json => console.log(`Times visited: ${json.value}`))
+            .then(json => {console.log(`Times visited: ${json.value}`); storage("portfolioData", json.value);})
             .catch((err) => console.error(`${err.message}`)); // Fetch ends here
+
+
+/* Modal */
 
 icon.onclick= () => {
     icon.classList.toggle("fa-close");
